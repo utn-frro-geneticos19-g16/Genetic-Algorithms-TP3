@@ -1,0 +1,16 @@
+/*
+Genetic Algorithms TP3 - Styles
+*/
+
+ul { list-style: none; }
+h2 { text-align: center; }
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.options>li {
+    font-size: 125%;
+}
