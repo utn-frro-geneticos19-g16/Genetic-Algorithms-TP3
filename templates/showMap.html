@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+<h3>Show Map</h3>
+<br>
+<ul>
+    {% for city in cities_list %}
+    <li>{{ city }}</li>
+    {% endfor %}
+
+    <input type="button" onclick="sendCities({{ cities_list }})" value="Send Cities">
+</ul>
+
+</body>
+</html>
