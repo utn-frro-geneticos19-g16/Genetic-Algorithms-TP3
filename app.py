@@ -13,7 +13,7 @@ def hello_world():
 
 @app.route('/Map')
 def show_map():
-    cities = [{"id": "Santa Fe"}, {"id": "La Plata"}, {"id": "Cordoba"}]
+    cities = [{"nombre": "Santa Fe"}, {"nombre": "La Plata"}, {"nombre": "Cordoba"}]
 
     return render_template("showMap.html", cities=cities)
 
