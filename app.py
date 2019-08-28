@@ -1,4 +1,5 @@
 from typing import List
+import json
 
 from flask import Flask, render_template
 
@@ -12,9 +13,9 @@ def hello_world():
 
 @app.route('/Map')
 def show_map():
-    cities_list = ["Santa Fe", "La Plata", "Cordoba"]
+    cities = [{"id": "Santa Fe"}, {"id": "La Plata"}, {"id": "Cordoba"}]
 
-    return render_template("showMap.html", cities_list=cities_list)
+    return render_template("showMap.html", cities=cities)
 
 
 if __name__ == '__main__':

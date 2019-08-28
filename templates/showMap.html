@@ -8,13 +8,8 @@
 <body>
 <h3>Show Map</h3>
 <br>
-<ul>
-    {% for city in cities_list %}
-    <li>{{ city }}</li>
-    {% endfor %}
 
-    <input type="button" onclick="sendCities({{ cities_list }})" value="Send Cities">
-</ul>
+<input type='button' onclick='sendCities({{ cities|tojson }})' value='Send Cities'>
 
 </body>
 </html>
