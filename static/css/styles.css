@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: darkred;
+    /* background-image: url("route/img"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title {
+    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.title>h1 {
+    padding: 1rem;
+    background-color: saddlebrown;
+    border: 0.25rem dashed cornsilk;
+}
+
+#options {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+#options>li {
+    margin: 3rem;
+    font-size: 150%;
+}
+
+#options>li>a {
+    padding: 1.5rem 15vw 1.5rem 15vw;
+    border: 0.25rem dashed cornsilk;
+    background-color: slateblue;
+}
+
+/* All Links */
+a { text-decoration: none; }
+
+/* Unvisited Links */
+a:link { color: black; }
+  
+/* Visited Links */
+a:visited { color: black; }
+  
+/* MouseOver Links */
+a:hover { color: cornflowerblue; }
+  
+/* Selected Links */
+a:active { color: cornflowerblue; }

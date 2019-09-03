@@ -5,12 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>TSP: Map</title>
-        <title>Title</title>
-        <!-- script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script> -->
+        <!-- src="{{ url_for('static', filename='js/main.js') }}"> -->
         <script src="../static/js/main.js"></script>
     </head>
     <body>
-        <h3>Show Map</h3>
+    <div class="title"><h1>TS3: Show Map</h1></div>
         <br>
         <input type='button' onclick='sendCities({{ cities|tojson }})' value='Send Cities'>
     </body>
