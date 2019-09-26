@@ -31,16 +31,23 @@ def show_map():
         },
         "Cordoba": {
             "Buenos Aires": 4,
-            "La Plata": 5,
+            "La Plata": 3,
             "Santa Fe": 13
         }
     }
 
     # Test: Continue with this approach
-    for k, v in cities.items():
-        print(min(v.items(), key=lambda key: key[1]))
+    visited_cities = ["Cordoba"]
 
-    return render_template("showMap.html", cities=cities)
+    while len(visited_cities) < 4:
+        v = cities[visited_cities[-1]]
+
+        print(min({x for x in v.items() if x[0] not in visited_cities}, key=lambda x: x[1]))
+
+        nearest_neig = min({x for x in v.items() if x[0] not in visited_cities}, key=lambda x: x[1])
+        visited_cities.append(nearest_neig[0])
+
+    return render_template("showMap.html", cities=visited_cities)
 
 
 if __name__ == '__main__':
