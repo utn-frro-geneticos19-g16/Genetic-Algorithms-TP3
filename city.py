@@ -6,9 +6,10 @@ class City(object):
         self.long = long
 
     def get_nearest_neig(self, visited_cities):
-        return min({x for x in self.neig.items()
-                    if x[0] not in visited_cities}
-                   , key=lambda x: x[1])
+        nearest_city = min({x for x in self.neig.items()
+                            if x[0] not in visited_cities}
+                           , key=lambda x: x[1])
+        return nearest_city[0]
 
     def get_name(self):
         return self.name

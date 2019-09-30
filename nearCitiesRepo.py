@@ -1,4 +1,4 @@
-class CitiesDictionaryRepo(object):
+class NearCitiesRepo(object):
     def __init__(self):
         self.cities = {
             "Santa Fe": {
