@@ -3,7 +3,7 @@ class City(object):
         self.name = name
         self.neig = cities_neig
         self.lat = lat
-        self.long = long
+        self.lng = long
 
     def get_nearest_neig(self, visited_cities):
         nearest_city = min({x for x in self.neig.items()
@@ -23,5 +23,5 @@ class City(object):
     def get_lat(self):
         return self.lat
 
-    def get_long(self):
-        return self.long
+    def get_lng(self):
+        return self.lng

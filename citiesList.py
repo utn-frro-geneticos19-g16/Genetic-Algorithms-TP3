@@ -9,16 +9,16 @@ class CitiesList(object):
 
         buenos_aires = City(name="Buenos Aires"
                             , cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires")
-                            , long=588, lat=487)
+                            , lat=-34.6131516, long=-58.3772316)
         la_plata = City(name="La Plata"
                         , cities_neig=self.citiesRepo.get_near_cities_dict("La Plata")
-                        , long=247, lat=460)
+                        , lat=-34.9214516, long=-57.9545288)
         cordoba = City(name="Cordoba"
                        , cities_neig=self.citiesRepo.get_near_cities_dict("Cordoba")
-                       , long=800, lat=495)
+                       , lat=-31.4134998, long=-64.1810532)
         santa_fe = City(name="Santa Fe"
                         , cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe")
-                        , long=975, lat=354)
+                        , lat=-31.6333294, long=-60.7000008)
         self.cities = {
             "Buenos Aires": buenos_aires
             , "La Plata": la_plata
@@ -30,7 +30,7 @@ class CitiesList(object):
         root_city = CityToVisit(
             name=self.cities[root_city_name].get_name()
             , lat=self.cities[root_city_name].get_lat()
-            , long=self.cities[root_city_name].get_long())
+            , long=self.cities[root_city_name].get_lng())
 
         visited_cities = [root_city]
         accumulated_distance = 0
@@ -46,7 +46,7 @@ class CitiesList(object):
                 visited_cities.append(CityToVisit(
                     name=self.cities[nearest_neig["name"]].get_name()
                     , lat=self.cities[nearest_neig["name"]].get_lat()
-                    , long=self.cities[nearest_neig["name"]].get_long())
+                    , long=self.cities[nearest_neig["name"]].get_lng())
                 )
                 accumulated_distance = accumulated_distance + nearest_neig["distance"]
 

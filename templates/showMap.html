@@ -6,11 +6,17 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>TSP: Map</title>
         <!-- src="{{ url_for('static', filename='js/functions.js') }}"> -->
-        <script src="../static/js/functions.js"></script>
+        <link rel="stylesheet" href="../static/css/styles.css">
+        <script src="../static/js/functions.js" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDl_rJzSd1sYocv-Ef2hepNRWc-orcfio&callback=initMap"
+        defer></script>
+        <script src="../static/js/mapConfiguration.js" type="text/javascript"></script>
     </head>
     <body>
-    <div class="title"><h1>TS3: Show Map</h1></div>
-        <br>
-        <input type='button' onclick='showTrack({{ track|tojson }})' value='Show Track'>
+        <div id="map-container">
+            <div id="map"></div>
+            <input type='button' id="btn-show-track" onclick='logTrack({{ track|tojson }})' value='Log Track'>
+            <input type='button' id="btn-show-track" onclick='initMarkers({{ track|tojson }})' value='Show Track'>
+        </div>
     </body>
 </html>
