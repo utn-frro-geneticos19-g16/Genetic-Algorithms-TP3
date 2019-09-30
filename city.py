@@ -9,7 +9,13 @@ class City(object):
         nearest_city = min({x for x in self.neig.items()
                             if x[0] not in visited_cities}
                            , key=lambda x: x[1])
-        return nearest_city[0]
+        return {
+            "name": nearest_city[0]
+            , "distance": nearest_city[1]
+        }
+
+    def get_distance_to(self, city):
+        return self.neig[city.get_name()]
 
     def get_name(self):
         return self.name

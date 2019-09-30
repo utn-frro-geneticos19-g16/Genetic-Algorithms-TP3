@@ -1,4 +1,4 @@
-class NearCitiesRepo(object):
+class NeighbourCitiesRepo(object):
     def __init__(self):
         self.cities = {
             "Santa Fe": {
@@ -23,5 +23,5 @@ class NearCitiesRepo(object):
             }
         }
 
-    def get_neighbour_dict(self, city):
+    def get_near_cities_dict(self, city):
         return self.cities[city]
