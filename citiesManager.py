@@ -118,12 +118,13 @@ class CitiesManager(object):
 
     # Best Track starting with a Selected One
     def get_best_track_from(self, root_city_name):
-        print("Llego a get_best_track_from")
+        print("Llego a get_best_track_from, parametro: " + root_city_name)
+        print(self.cities[root_city_name].get_lat())
         # Create a "CityToVisit" object for Every city on the travel
         root_city = CityToVisit(
             name=self.cities[root_city_name].get_name(),
             lat=self.cities[root_city_name].get_lat(),
-            lng=self.cities[root_city_name].get_lng())
+            long=self.cities[root_city_name].get_lng())
 
         print("ciudad origen: " + root_city)
 
@@ -146,7 +147,7 @@ class CitiesManager(object):
                 visited_cities.append(CityToVisit(
                     name=self.cities[nearest_neig["name"]].get_name(),
                     lat=self.cities[nearest_neig["name"]].get_lat(),
-                    lng=self.cities[nearest_neig["name"]].get_lng())
+                    long=self.cities[nearest_neig["name"]].get_lng())
                 )
                 # Update Total Distance
                 accumulated_distance = accumulated_distance + nearest_neig["distance"]

@@ -22,5 +22,5 @@ class CityToVisit(object):
         return {
             "name": self.name,
             "lat": self.lat,
-            "long": self.lng
+            "lng": self.lng
         }
