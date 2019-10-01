@@ -39,57 +39,53 @@ class CitiesManager(object):
         neuquen = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Neuquen")
                        , lat=-38.9516106, long=-68.0590973)
 
-
-        #Agregar las latitudes y longitudes correspondientes a partir de aca
-
-
         parana = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Parana")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-31.7319698, long=-60.5237999)
 
         posadas = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Posadas")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-27.3670807, long=-55.89608)
 
         rawson = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Rawson")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-43.3001595, long=-65.1022797)
 
         resistencia = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Resistencia")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-27.4605598, long=-58.9838905)
 
         rio_gallegos = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Rio Gallegos")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-51.6226082, long=-69.218132)
 
         sfdvd_catamarca = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.F.d.V.d. Catamarca")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-28.4695702, long=-65.7852402)
 
         sm_de_tucuman = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.M. de Tucuman")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-26.8241405, long=--65.2226028)
 
         ss_de_jujuy = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.S de Jujuy")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-24.1945705, long=-65.2971191)
 
         salta = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Salta")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-24.7859001, long=-65.4116592)
 
         san_juan = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("San Juan")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-31.5375004, long=-68.5363922)
 
         san_luis = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("San Luis")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-33.2950096, long=-66.3356323)
 
         santa_fe = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-31.6333294, long=-60.7000008)
 
         santa_rosa = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Rosa")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-36.6166687, long=-64.2833328)
 
         sgo_del_estero = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Sgo. del Estero")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-27.7951107, long=-64.2614899)
 
         ushuaia = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Ushuaia")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-54.7999992, long=-68.3000031)
 
         viedma = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Viedma")
-                       , lat=-38.9516106, long=-68.0590973)
+                       , lat=-40.8134499, long=-62.9966812)
 
         # More 16 Cities Like Santa Fe
         # santa_fe = City(name="Santa Fe", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe"),
