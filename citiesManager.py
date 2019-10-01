@@ -4,8 +4,8 @@
 from neighbourCitiesRepo import NeighbourCitiesRepo
 from city import City
 from cityToVisit import CityToVisit
-# Genetic Algorithm...
-
+from population import Population
+from chromosome import Chromosome
 
 # Initialization of All Cities
 class CitiesManager(object):
@@ -172,5 +172,35 @@ class CitiesManager(object):
 
     # Best Track Using Genetic Algorithm
     def get_track_with_ag(self):
-        # Genethic Algorithm...
-        pass
+        # ImportantValues
+        iterationLimit = 4  # 200  # Population Iterations
+        initPopulationNum = 50  # Initial Population Size
+        crossoverProb = 0.75  # Probability of CrossOver
+        mutationProb = 0.05  # Probability of Mutation
+
+        track_ag = None  # Initialization of Best Track
+        km_ag = 0  # Initialization of Total Distance
+
+        # Initialize Chromosome
+        Chromosome.setCitiesDict(self.cities)
+
+        # First Population
+        pob = Population(initPopulationNum, list(self.cities.keys()), crossoverProb, mutationProb)
+
+        # Iterations
+        for iterationCount in range(iterationLimit):
+            pob.showPopulation(iterationCount)
+
+            # In the last iteration, the chromosomes population mustn't reproduce
+            if iterationCount < iterationLimit - 1:
+                pob.reproduce()  # Reproduction of Actual Generation
+                print("------------")
+            else:
+                # Last Reproduction Message
+                print("Last Generation Reached Correctly")
+                print("------------")
+                print()
+                print()
+                track_ag, km_ag = pob.getBestTrackAg()
+
+        return track_ag, km_ag
