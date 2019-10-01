@@ -12,21 +12,21 @@ function initMap() {
             ,streetViewControl: false
         });
 
-    var flightPlanCoordinates = [
-          {lat: 37.772, lng: -122.214},
-          {lat: 21.291, lng: -157.821},
-          {lat: -18.142, lng: 178.431},
-          {lat: -27.467, lng: 153.027}
-        ];
-
-
+    locationsToAdd = [];
+    
     // To draw the track
+    // https://stackoverflow.com/questions/31305497/how-to-draw-an-arrow-on-every-polyline-segment-on-google-maps-v3
     flightPath = new google.maps.Polyline({
-       path: flightPlanCoordinates
+       path: locationsToAdd
        ,geodesic: true
        ,strokeColor: '#FF000'
        ,strokeOpacity: 0.6
        ,strokeWeight: 4
+       ,icons: [{
+           icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW}
+           ,offset: '100%'
+           ,repeat: '200px'
+        }]
     });
 
     flightPath.setMap(map);
@@ -36,12 +36,10 @@ function initMap() {
 }
 
 function initMarkers(track) {
-    let locationsToAdd = [];
-
     track["cities_to_visit"].forEach(function (location) {
         let locationToAdd = {
             lat: parseFloat(location.lat)
-            ,lng: parseFloat(location.long)
+            ,lng: parseFloat(location.lng)
         };
 
         console.log(locationToAdd);
@@ -59,10 +57,8 @@ function initMarkers(track) {
 }
 
 function newMarker(locationToAdd) {
-    let marker = new google.maps.Marker({
+    return new google.maps.Marker({
        position: locationToAdd
        ,map: map
     });
-
-    return marker;
 }

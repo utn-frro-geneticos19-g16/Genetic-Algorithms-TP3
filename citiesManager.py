@@ -15,29 +15,29 @@ class CitiesManager(object):
         # FIX: Long and Lat...
         # Completar...
 
-        buenos_aires = City(name="Buenos Aires", cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires"),
-                            long=588, lat=487)
+        buenos_aires = City(name="Buenos Aires", cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires")
+                            , lat=-34.6131516, long=-58.3772316,)
 
-        cordoba = City(name="Cordoba", cities_neig=self.citiesRepo.get_near_cities_dict("Cordoba"),
-                       long=800, lat=495)
+        cordoba = City(name="Cordoba", cities_neig=self.citiesRepo.get_near_cities_dict("Cordoba")
+                       , lat=-31.4134998, long=-64.1810532)
 
-        corrientes = City(name="Corrientes", cities_neig=self.citiesRepo.get_near_cities_dict("Corrientes"),
-                       long=1001, lat=1001)
+        corrientes = City(name="Corrientes", cities_neig=self.citiesRepo.get_near_cities_dict("Corrientes")
+                          , lat=-27.4806004, long=-58.8340988)
 
-        formosa = City(name="Formosa", cities_neig=self.citiesRepo.get_near_cities_dict("Formosa"),
-                       long=1001, lat=1001)
+        formosa = City(name="Formosa", cities_neig=self.citiesRepo.get_near_cities_dict("Formosa")
+                       , lat=-26.1775303, long=-58.1781387)
 
-        la_plata = City(name="La Plata", cities_neig=self.citiesRepo.get_near_cities_dict("La Plata"),
-                        long=247, lat=460)
+        la_plata = City(name="La Plata", cities_neig=self.citiesRepo.get_near_cities_dict("La Plata")
+                        , lat=-34.9214516, long=-57.9545288)
 
-        la_rioja = City(name="La Rioja", cities_neig=self.citiesRepo.get_near_cities_dict("La Rioja"),
-                        long=1001, lat=1001)
+        la_rioja = City(name="La Rioja", cities_neig=self.citiesRepo.get_near_cities_dict("La Rioja")
+                        , lat=-29.4110508, long=-66.8506699)
 
-        mendoza = City(name="Mendoza", cities_neig=self.citiesRepo.get_near_cities_dict("Mendoza"),
-                        long=1001, lat=1001)
+        mendoza = City(name="Mendoza", cities_neig=self.citiesRepo.get_near_cities_dict("Mendoza")
+                       , lat=-32.8908386, long=-68.8271713)
 
-        neuquen = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Neuquen"),
-                        long=1001, lat=1001)
+        neuquen = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Neuquen")
+                       , lat=-38.9516106, long=-68.0590973)
 
         # More 16 Cities Like Santa Fe
         # santa_fe = City(name="Santa Fe", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe"),

@@ -63,6 +63,65 @@ class NeighbourCitiesRepo(object):
                         "San Luis": 643, "Santa Fe": 1049, "Santa Rosa": 422, "Sgo. del Estero": 1286,
                         "Ushuaia": 1762, "Viedma": 479},
 
+            "Resistencia": {"Buenos Aires": 794, "Cordoba": 669, "Corrientes": 13, "Formosa": 161, "La Plata": 833,
+                            "La Rioja": 802,
+                            "Mendoza": 1121, "Neuquen": 1529, "Parana": 498, "Posadas": 305, "Rawson": 1843,
+                            "Rio Gallegos": 2818, "S.F.d.V.d. Catamarca": 678,
+                            "S. M. de Tucuman": 620, "S. S. de Jujuy": 729, "Salta": 706, "San Juan": 1029,
+                            "San Luis": 961, "Santa Fe": 495, "Santa Rosa": 1132, "Sgo. del Estero": 523,
+                            "Ushuaia": 3130, "Viedma": 1526},
+
+            "Santa Fe": {"Buenos Aires": 393, "Cordoba": 330, "Corrientes": 498, "Formosa": 654, "La Plata": 444,
+                         "La Rioja": 640,
+                         "Mendoza": 775, "Neuquen": 1049, "Parana": 19, "Posadas": 664, "Rawson": 1349,
+                         "Resistencia": 495, "Rio Gallegos": 2325, "S.F.d.V.d. Catamarca": 602,
+                         "S. M. de Tucuman": 689, "S. S. de Jujuy": 942, "Salta": 889, "San Juan": 740,
+                         "San Luis": 560, "Santa Rosa": 641, "Sgo. del Estero": 547,
+                         "Ushuaia": 2641, "Viedma": 1035},
+
+            "Santa Rosa": {"Buenos Aires": 579, "Cordoba": 577, "Corrientes": 1136, "Formosa": 1293, "La Plata": 602, "La Rioja": 834,
+                             "Mendoza": 586, "Neuquen": 422, "Parana": 642, "Posadas": 1293, "Rawson": 745,
+                             "Resistencia": 1132, "Rio Gallegos": 1712, "S.F.d.V.d. Catamarca": 915,
+                             "S. M. de Tucuman": 1088, "S. S. de Jujuy": 1382, "Salta": 1316, "San Juan": 686,
+                             "San Luis": 412, "Santa Fe": 641, "Sgo. del Estero": 977,
+                             "Ushuaia": 2044, "Viedma": 477},
+
+            "S.F.d.V.d. Catamarca": {"Buenos Aires": 979, "Cordoba": 362, "Corrientes": 691, "Formosa": 793,
+                                     "La Plata": 1030,
+                                     "La Rioja": 149, "Mendoza": 569, "Neuquen": 1182, "Parana": 622, "Posadas": 980
+                                     , "Rawson": 1647, "Resistencia": 678, "Rio Gallegos": 2587, "S. M. de Tucuman": 189
+                                     , "S. S. de Jujuy": 477, "Salta": 410, "San Juan": 430, "San Luis": 540
+                                     , "Santa Fe": 689, "Santa Rosa": 1088, "Sgo. del Estero": 141
+                                     , "Ushuaia": 3116, "Viedma": 1562},
+
+            "Sgo. del Estero": {"Buenos Aires": 979, "Cordoba": 401, "Corrientes": 535, "Formosa": 629, "La Plata": 991, "La Rioja": 311,
+                             "Mendoza": 713, "Neuquen": 1286, "Parana": 566, "Posadas": 827, "Rawson": 1721,
+                             "Resistencia": 523, "Rio Gallegos": 2677, "S.F.d.V.d. Catamarca": 166,
+                             "S. M. de Tucuman": 141, "S. S. de Jujuy": 414, "Salta": 353, "San Juan": 583,
+                             "San Luis": 643, "Santa Fe": 547, "Santa Rosa": 977,
+                             "Ushuaia": 3016, "Viedma": 1446},
+
+            "S. S. de Jujuy": {"Buenos Aires": 1334, "Cordoba": 809, "Corrientes": 742, "Formosa": 750, "La Plata": 1385, "La Rioja": 600,
+                             "Mendoza": 1023, "Neuquen": 1658, "Parana": 959, "Posadas": 1007, "Rawson": 2120,
+                             "Resistencia": 729, "Rio Gallegos": 3063, "S.F.d.V.d. Catamarca": 477,
+                             "S. M. de Tucuman": 293, "Salta": 67, "San Juan": 874,
+                             "San Luis": 1017, "Santa Fe": 942, "Santa Rosa": 1382, "Sgo. del Estero": 414,
+                             "Ushuaia": 3408, "Viedma": 1855},
+
+            "Ushuaia": {"Buenos Aires": 2373, "Cordoba": 2618, "Corrientes": 3131, "Formosa": 3284, "La Plata": 2350, "La Rioja": 2821,
+                             "Mendoza": 2435, "Neuquen": 1762, "Parana": 2635, "Posadas": 3207, "Rawson": 1300,
+                             "Resistencia": 3130, "Rio Gallegos": 359, "S.F.d.V.d. Catamarca": 2931,
+                             "S. M. de Tucuman": 3116, "S. S. de Jujuy": 3408, "Salta": 3341, "San Juan": 2585,
+                             "San Luis": 2392, "Santa Fe": 2641, "Santa Rosa": 2044, "Sgo. del Estero": 3016,
+                             "Viedma": 1605},
+
+            "Viedma": {"Buenos Aires": 799, "Cordoba": 1047, "Corrientes": 1527, "Formosa": 1681, "La Plata": 789, "La Rioja": 1311,
+                             "Mendoza": 1019, "Neuquen": 479, "Parana": 1030, "Posadas": 1624, "Rawson": 327,
+                             "Resistencia": 1526, "Rio Gallegos": 1294, "S.F.d.V.d. Catamarca": 1391,
+                             "S. M. de Tucuman": 1562, "S. S. de Jujuy": 1855, "Salta": 1790, "San Juan": 1141,
+                             "San Luis": 882, "Santa Fe": 1035, "Santa Rosa": 477, "Sgo. del Estero": 1446,
+                             "Ushuaia": 1605},
+
             # More 16 Cities like "Santa Fe": {"Buenos Aires": 4, "La Plata": 5, "Cordoba": 13},
         }
 
