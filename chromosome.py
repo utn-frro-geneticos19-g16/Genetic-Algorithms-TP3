@@ -2,34 +2,56 @@
 # -*- coding: utf-8 -*-
 import random
 
-# hay que cambiar la funcion objetivo a un calculo de mejor ruta
+
 class Chromosome(object):
+
+    # Class Attribute
+    CitiesDict = []
 
     # Constructor / Instance Attributes
     def __init__(self, large, cities, newRoute):
         # Chromosome's Genes
         if newRoute is None:
-            for _ in range(large):
-                self.route = random.shuffle(cities)
+            random.shuffle(cities)
+            self.route = cities  # Shuffle and then Assignation
+            print(self.route)
         else:
             self.route = newRoute
         self.large = large
-        # Initialize Objective Function Punctuation and Fitness
-        self.setObjectivePunctuation()
+        self.objectivePunctuation = 0
         self.fitness = 0
+
+        # Initialize Objective Function Punctuation
+        self.setObjectivePunctuation()
+
+
+    @classmethod
+    def getCitiesDict(cls):
+        return cls.CitiesDict
+
+    @classmethod
+    def setCitiesDict(cls, citiesDictionary):
+        cls.CitiesDict = citiesDictionary
 
     # Show All Genes of the Chromosome
     def getRoute(self):
         return self.route
 
-        return int(str_bin_num)
-
     def calcObjPunc(self):
-        pass
+        accumulated_distance = 0
+        cd = self.getCitiesDict()
+        city_last = self.route[0]
+        # Calculate Distance Step by Step comparing the Chromosome's Route with Neighbours on Cities Dictionary
+        for i in range(1, len(self.route)-2):
+            city_step = self.route[i]
+            accumulated_distance += cd[city_last].get_distance_to(cd[city_step])
+            city_last = city_step
+        # At the End, go back to the First City
+        accumulated_distance += cd[self.route[len(self.route)-1]].get_distance_to(cd[self.route[0]])
+        return accumulated_distance
 
-    def calcFitness(self, totalObj):
-        # if totalObj == 0: totalObj = 1  # Prevent Division by Zero Error
-        self.fitness = (self.getObjectivePunctuation() / totalObj)  # Update Fitness
+    def calcFitness(self, totalObj):  # Reverse Score (Little Distances gets better Fitness)
+        self.fitness = ((totalObj - self.getObjectivePunctuation()) / totalObj)  # Update Fitness
         return self.fitness
 
     # Getters and Setters
