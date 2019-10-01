@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+# Every City of the Visited List
 class CityToVisit(object):
     def __init__(self, name, lat, long):
         self.name = name
@@ -15,7 +20,7 @@ class CityToVisit(object):
 
     def serialize(self):
         return {
-            "name": self.name
-            , "lat": self.lat
-            , "long": self.long
+            "name": self.name,
+            "lat": self.lat,
+            "long": self.long
         }
