@@ -12,8 +12,7 @@ class CitiesManager(object):
     def __init__(self):
         self.citiesRepo = NeighbourCitiesRepo()
 
-        # FIX: Long and Lat...
-        # Completar...
+        print("Llego a constructor de cityManager")
 
         buenos_aires = City(name="Buenos Aires", cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires")
                             , lat=-34.6131516, long=-58.3772316,)
@@ -39,57 +38,53 @@ class CitiesManager(object):
         neuquen = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Neuquen")
                        , lat=-38.9516106, long=-68.0590973)
 
-        parana = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Parana")
+        parana = City(name="Parana", cities_neig=self.citiesRepo.get_near_cities_dict("Parana")
                        , lat=-31.7319698, long=-60.5237999)
 
-        posadas = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Posadas")
+        posadas = City(name="Posadas", cities_neig=self.citiesRepo.get_near_cities_dict("Posadas")
                        , lat=-27.3670807, long=-55.89608)
 
-        rawson = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Rawson")
+        rawson = City(name="Rawson", cities_neig=self.citiesRepo.get_near_cities_dict("Rawson")
                        , lat=-43.3001595, long=-65.1022797)
 
-        resistencia = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Resistencia")
+        resistencia = City(name="Resistencia", cities_neig=self.citiesRepo.get_near_cities_dict("Resistencia")
                        , lat=-27.4605598, long=-58.9838905)
 
-        rio_gallegos = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Rio Gallegos")
+        rio_gallegos = City(name="Rio Gallegos", cities_neig=self.citiesRepo.get_near_cities_dict("Rio Gallegos")
                        , lat=-51.6226082, long=-69.218132)
 
-        sfdvd_catamarca = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.F.d.V.d. Catamarca")
+        sfdvd_catamarca = City(name="S.F.d.V.d. Catamarca", cities_neig=self.citiesRepo.get_near_cities_dict("S.F.d.V.d. Catamarca")
                        , lat=-28.4695702, long=-65.7852402)
 
-        sm_de_tucuman = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.M. de Tucuman")
+        sm_de_tucuman = City(name="S.M. de Tucuman", cities_neig=self.citiesRepo.get_near_cities_dict("S.M. de Tucuman")
                        , lat=-26.8241405, long=--65.2226028)
 
-        ss_de_jujuy = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.S de Jujuy")
+        ss_de_jujuy = City(name="S.S. de Jujuy", cities_neig=self.citiesRepo.get_near_cities_dict("S.S. de Jujuy")
                        , lat=-24.1945705, long=-65.2971191)
 
-        salta = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Salta")
+        salta = City(name="Salta", cities_neig=self.citiesRepo.get_near_cities_dict("Salta")
                        , lat=-24.7859001, long=-65.4116592)
 
-        san_juan = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("San Juan")
+        san_juan = City(name="San Juan", cities_neig=self.citiesRepo.get_near_cities_dict("San Juan")
                        , lat=-31.5375004, long=-68.5363922)
 
-        san_luis = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("San Luis")
+        san_luis = City(name="San Luis", cities_neig=self.citiesRepo.get_near_cities_dict("San Luis")
                        , lat=-33.2950096, long=-66.3356323)
 
-        santa_fe = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe")
+        santa_fe = City(name="Santa Fe", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe")
                        , lat=-31.6333294, long=-60.7000008)
 
-        santa_rosa = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Rosa")
+        santa_rosa = City(name="Santa Rosa", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Rosa")
                        , lat=-36.6166687, long=-64.2833328)
 
-        sgo_del_estero = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Sgo. del Estero")
+        sgo_del_estero = City(name="Sgo. del Estero", cities_neig=self.citiesRepo.get_near_cities_dict("Sgo. del Estero")
                        , lat=-27.7951107, long=-64.2614899)
 
-        ushuaia = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Ushuaia")
+        ushuaia = City(name="Ushuaia", cities_neig=self.citiesRepo.get_near_cities_dict("Ushuaia")
                        , lat=-54.7999992, long=-68.3000031)
 
-        viedma = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Viedma")
+        viedma = City(name="Viedma", cities_neig=self.citiesRepo.get_near_cities_dict("Viedma")
                        , lat=-40.8134499, long=-62.9966812)
-
-        # More 16 Cities Like Santa Fe
-        # santa_fe = City(name="Santa Fe", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe"),
-                        # long=975, lat=354)
 
         # Dictionary with all City Objects
         self.cities = {
@@ -108,7 +103,7 @@ class CitiesManager(object):
             "Rio Gallegos": rio_gallegos,
             "S.F.d.V.d. Catamarca": sfdvd_catamarca,
             "S.M. de Tucuman": sm_de_tucuman,
-            "S.S de Jujuy": ss_de_jujuy,
+            "S.S. de Jujuy": ss_de_jujuy,
             "Salta": salta,
             "San Juan": san_juan,
             "San Luis": san_luis,
@@ -117,17 +112,20 @@ class CitiesManager(object):
             "Sgo. del Estero": sgo_del_estero,
             "Ushuaia": ushuaia,
             "Viedma": viedma,
-            # "Santa Fe": santa_fe...
         }
+
+        print(self.cities)
 
     # Best Track starting with a Selected One
     def get_best_track_from(self, root_city_name):
-
+        print("Llego a get_best_track_from")
         # Create a "CityToVisit" object for Every city on the travel
         root_city = CityToVisit(
             name=self.cities[root_city_name].get_name(),
             lat=self.cities[root_city_name].get_lat(),
-            long=self.cities[root_city_name].get_long())
+            lng=self.cities[root_city_name].get_lng())
+
+        print("ciudad origen: " + root_city)
 
         # All CityToVisit List and Total Travel Distance
         visited_cities = [root_city]
@@ -148,7 +146,7 @@ class CitiesManager(object):
                 visited_cities.append(CityToVisit(
                     name=self.cities[nearest_neig["name"]].get_name(),
                     lat=self.cities[nearest_neig["name"]].get_lat(),
-                    long=self.cities[nearest_neig["name"]].get_long())
+                    lng=self.cities[nearest_neig["name"]].get_lng())
                 )
                 # Update Total Distance
                 accumulated_distance = accumulated_distance + nearest_neig["distance"]
