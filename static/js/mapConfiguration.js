@@ -1,11 +1,11 @@
 function initMap() {
     // Central reference location, UTN FRRo
-    baseLocation = {lat: -32.95476, lng: -60.6459824};
+    baseLocation = {lat: -41.0000000, lng: -64.0000000};
     // Map, hiding business and other unnecessary stuff
     map = new google.maps.Map(
         document.getElementById('map'), {
             center: baseLocation
-            ,zoom: 15
+            ,zoom: 4.25
             ,styles: [{"featureType": "poi.business","stylers": [{ "visibility": "off" }]}]
             ,mapTypeControl: false
             ,fullscreenControl: false
@@ -33,9 +33,11 @@ function initMap() {
 
     // Center the map taking into account every position
     bounds = new google.maps.LatLngBounds();
+
+    markers = [];
 }
 
-function initMarkers(track) {
+function setFlightPath(track) {
     track["cities_to_visit"].forEach(function (location) {
         let locationToAdd = {
             lat: parseFloat(location.lat)
@@ -56,9 +58,26 @@ function initMarkers(track) {
     console.log(flightPath);
 }
 
+function setMarkers(track) {
+    let locations = track["cities_to_visit"];
+
+    let location = locations[locations.length - 1];
+
+    console.log(location);
+
+    let locationToAdd = {
+        lat: parseFloat(location.lat)
+        ,lng: parseFloat(location.lng)
+    };
+
+    newMarker(locationToAdd);
+}
+
 function newMarker(locationToAdd) {
-    return new google.maps.Marker({
+    let marker = new google.maps.Marker({
        position: locationToAdd
        ,map: map
     });
+
+    markers.push(marker);
 }
