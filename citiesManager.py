@@ -202,5 +202,10 @@ class CitiesManager(object):
                 print()
                 print()
                 track_ag, km_ag = pob.getBestTrackAg()
-
-        return track_ag, km_ag
+        
+        # Convert track_ag in a citiesToVisit List
+        
+        return {
+            "cities_to_visit": track_ag,
+            "accumulated_distance": km_ag
+        }

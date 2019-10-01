@@ -68,9 +68,8 @@ def show_best_track():
 # Best Track Using Genetic Algorithm
 @app.route('/Map/Ag')
 def show_track_with_ag():
-    track_ag, km_ag = cities.get_track_with_ag()
+    track_ag = cities.get_track_with_ag()
 
-    # Show km_ag (Total of KM...)
     return render_template("showMap.html", track=track_ag)
 
 
