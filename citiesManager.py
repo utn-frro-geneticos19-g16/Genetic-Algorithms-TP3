@@ -4,7 +4,7 @@
 from neighbourCitiesRepo import NeighbourCitiesRepo
 from city import City
 from cityToVisit import CityToVisit
-from population import Population
+# Genetic Algorithm...
 
 
 # Initialization of All Cities
@@ -12,10 +12,11 @@ class CitiesManager(object):
     def __init__(self):
         self.citiesRepo = NeighbourCitiesRepo()
 
+        # FIX: Long and Lat...
         # Completar...
 
         buenos_aires = City(name="Buenos Aires", cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires")
-                            , lat=-34.6131516, long=-58.3772316)
+                            , lat=-34.6131516, long=-58.3772316,)
 
         cordoba = City(name="Cordoba", cities_neig=self.citiesRepo.get_near_cities_dict("Cordoba")
                        , lat=-31.4134998, long=-64.1810532)
@@ -38,6 +39,58 @@ class CitiesManager(object):
         neuquen = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Neuquen")
                        , lat=-38.9516106, long=-68.0590973)
 
+
+        #Agregar las latitudes y longitudes correspondientes a partir de aca
+
+
+        parana = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Parana")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        posadas = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Posadas")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        rawson = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Rawson")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        resistencia = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Resistencia")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        rio_gallegos = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Rio Gallegos")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        sfdvd_catamarca = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.F.d.V.d. Catamarca")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        sm_de_tucuman = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.M. de Tucuman")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        ss_de_jujuy = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("S.S de Jujuy")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        salta = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Salta")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        san_juan = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("San Juan")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        san_luis = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("San Luis")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        santa_fe = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        santa_rosa = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Rosa")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        sgo_del_estero = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Sgo. del Estero")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        ushuaia = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Ushuaia")
+                       , lat=-38.9516106, long=-68.0590973)
+
+        viedma = City(name="Neuquen", cities_neig=self.citiesRepo.get_near_cities_dict("Viedma")
+                       , lat=-38.9516106, long=-68.0590973)
+
         # More 16 Cities Like Santa Fe
         # santa_fe = City(name="Santa Fe", cities_neig=self.citiesRepo.get_near_cities_dict("Santa Fe"),
                         # long=975, lat=354)
@@ -52,6 +105,22 @@ class CitiesManager(object):
             "La Rioja": la_rioja,
             "Mendoza": mendoza,
             "Neuquen": neuquen,
+            "Parana": parana,
+            "Posadas": posadas,
+            "Rawson": rawson,
+            "Resistencia": resistencia,
+            "Rio Gallegos": rio_gallegos,
+            "S.F.d.V.d. Catamarca": sfdvd_catamarca,
+            "S.M. de Tucuman": sm_de_tucuman,
+            "S.S de Jujuy": ss_de_jujuy,
+            "Salta": salta,
+            "San Juan": san_juan,
+            "San Luis": san_luis,
+            "Santa Fe": santa_fe,
+            "Santa Rosa": santa_rosa,
+            "Sgo. del Estero": sgo_del_estero,
+            "Ushuaia": ushuaia,
+            "Viedma": viedma,
             # "Santa Fe": santa_fe...
         }
 
@@ -110,29 +179,5 @@ class CitiesManager(object):
 
     # Best Track Using Genetic Algorithm
     def get_track_with_ag(self):
-        # ImportantValues
-        iterationLimit = 200  # Population Iterations
-        initPopulationNum = 50  # Initial Population Size
-        crossoverProb = 0.75  # Probability of CrossOver
-        mutationProb = 0.05  # Probability of Mutation
-        track_ag = None  # Initialization of Best Track
-
-        # First Population
-        pob = Population(initPopulationNum, self.cities, crossoverProb, mutationProb)
-
-        # Iterations
-        for iterationCount in range(iterationLimit):
-            pob.showPopulation(iterationCount)
-
-            # In the last iteration, the chromosomes population mustn't reproduce
-            if iterationCount < iterationLimit - 1:
-                pob.reproduce()  # Reproduction of Actual Generation
-                # Last Reproduction Message
-                print("Last Generation Reached Correctly")
-                print("------------")
-                print()
-                print()
-            else:
-                track_ag, km_ag = pob.getBestTrackAg()
-
-        return track_ag
+        # Genethic Algorithm...
+        pass
