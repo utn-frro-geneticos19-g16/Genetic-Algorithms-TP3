@@ -4,7 +4,7 @@
 from neighbourCitiesRepo import NeighbourCitiesRepo
 from city import City
 from cityToVisit import CityToVisit
-# Genetic Algorithm...
+from population import Population
 
 
 # Initialization of All Cities
@@ -12,11 +12,10 @@ class CitiesManager(object):
     def __init__(self):
         self.citiesRepo = NeighbourCitiesRepo()
 
-        # FIX: Long and Lat...
         # Completar...
 
         buenos_aires = City(name="Buenos Aires", cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires")
-                            , lat=-34.6131516, long=-58.3772316,)
+                            , lat=-34.6131516, long=-58.3772316)
 
         cordoba = City(name="Cordoba", cities_neig=self.citiesRepo.get_near_cities_dict("Cordoba")
                        , lat=-31.4134998, long=-64.1810532)
@@ -111,5 +110,29 @@ class CitiesManager(object):
 
     # Best Track Using Genetic Algorithm
     def get_track_with_ag(self):
-        # Genethic Algorithm...
-        pass
+        # ImportantValues
+        iterationLimit = 200  # Population Iterations
+        initPopulationNum = 50  # Initial Population Size
+        crossoverProb = 0.75  # Probability of CrossOver
+        mutationProb = 0.05  # Probability of Mutation
+        track_ag = None  # Initialization of Best Track
+
+        # First Population
+        pob = Population(initPopulationNum, self.cities, crossoverProb, mutationProb)
+
+        # Iterations
+        for iterationCount in range(iterationLimit):
+            pob.showPopulation(iterationCount)
+
+            # In the last iteration, the chromosomes population mustn't reproduce
+            if iterationCount < iterationLimit - 1:
+                pob.reproduce()  # Reproduction of Actual Generation
+                # Last Reproduction Message
+                print("Last Generation Reached Correctly")
+                print("------------")
+                print()
+                print()
+            else:
+                track_ag, km_ag = pob.getBestTrackAg()
+
+        return track_ag
