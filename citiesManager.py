@@ -57,7 +57,7 @@ class CitiesManager(object):
                        , lat=-28.4695702, long=-65.7852402)
 
         sm_de_tucuman = City(name="S.M. de Tucuman", cities_neig=self.citiesRepo.get_near_cities_dict("S.M. de Tucuman")
-                       , lat=-26.8241405, long=--65.2226028)
+                       , lat=-26.8241405, long=-65.2226028)
 
         ss_de_jujuy = City(name="S.S. de Jujuy", cities_neig=self.citiesRepo.get_near_cities_dict("S.S. de Jujuy")
                        , lat=-24.1945705, long=-65.2971191)
@@ -125,8 +125,6 @@ class CitiesManager(object):
             name=self.cities[root_city_name].get_name(),
             lat=self.cities[root_city_name].get_lat(),
             long=self.cities[root_city_name].get_lng())
-
-        print("ciudad origen: " + root_city)
 
         # All CityToVisit List and Total Travel Distance
         visited_cities = [root_city]

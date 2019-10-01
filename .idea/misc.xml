@@ -3,9 +3,5 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
-<<<<<<< Updated upstream
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (Genetic-Algorithms-TP3)" project-jdk-type="Python SDK" />
-=======
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.5" project-jdk-type="Python SDK" />
->>>>>>> Stashed changes
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.5 (Genetic-Algorithms-TP3)" project-jdk-type="Python SDK" />
 </project>
