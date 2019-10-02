@@ -5,7 +5,6 @@ from chromosome import Chromosome
 import random
 
 
-# HAY QUE CAMBIAR LA RULETA, Y EL CROSSOVER A CICLICO!!!
 class Population(object):
     # Class Attributes
     population = []  # Initial Population (Array of Chromosomes)
@@ -27,10 +26,6 @@ class Population(object):
             print("Chrom ", i, end=": ")
             # Initialization of Chromosomes
             self.population.append(Chromosome(self.chromSize, cities, None))  # Add to Population
-
-        print("INITIAL POPULATION TEST")
-        for i in range(len(self.population)):
-            print(self.population[i].getRoute())
 
     # Show Actual Population and Stats
     def showPopulation(self, numIter):
@@ -181,56 +176,92 @@ class Population(object):
         else:
             return False
 
-    # Ciclic Crossover
+    # Cyclic Crossover
     def cross(self, parent1, parent2):
         crom_size = parent1.getLarge()
         son1 = Chromosome(crom_size, None, ['']*crom_size)
         son2 = Chromosome(crom_size, None, ['']*crom_size)
-        # cut = random.randint(1, crom_size - 2)  # Random Cut Point (Except by zero or all genes)
 
         son1.route[0] = parent1.route[0]
-        for i in range(1, crom_size):
+        key = parent2.route[0]
+        i = 0
+        while key != parent1.route[0]:
+            if i == crom_size-1:
+                i = 0
             pos = 0
-            key = parent2.route[i]
             if key == parent1.route[0]:
                 break
-            for j in range(1, crom_size):
+            for j in range(crom_size):
                 if parent1.route[j] == key:
                     pos = j
             son1.route[pos] = key
+            i += 1
+            key = parent2.route[i]
 
-        for i in range(1, crom_size):
+        for i in range(crom_size):
             if son1.route[i] == '':
                 son1.route[i] = parent2.route[i]
 
         son2.route[0] = parent2.route[0]
-        for i in range(1, crom_size):
+        key = parent1.route[0]
+        i = 0
+        while key != parent2.route[0]:
+            if i == crom_size - 1:
+                i = 0
             pos = 0
-            key = parent1.route[i]
             if key == parent2.route[0]:
                 break
-            for j in range(1, crom_size):
+            for j in range(crom_size):
                 if parent2.route[j] == key:
                     pos = j
             son2.route[pos] = key
+            i += 1
+            key = parent1.route[i]
 
-        for i in range(1, crom_size):
+        for i in range(crom_size):
             if son2.route[i] == '':
                 son2.route[i] = parent1.route[i]
 
-        print("sons: ")
+        # son2.route[0] = parent2.route[0]
+        # for i in range(crom_size):
+        #     pos = 0
+        #     key = parent1.route[i]
+        #     if key == parent2.route[0]:
+        #         break
+        #     for j in range(crom_size):
+        #         if parent2.route[j] == key:
+        #             pos = j
+        #     son2.route[pos] = key
+        #
+        # for i in range(crom_size):
+        #     if son2.route[i] == '':
+        #         son2.route[i] = parent1.route[i]
+
+        print()
+        print("New Sons after CrossOver: ")
         print(son1.getRoute())
         print(son2.getRoute())
+
+        son1.setObjectivePunctuation()
+        son2.setObjectivePunctuation()
+
         return son1, son2
 
     def copy(self, chrom1, chrom2):
-        # newGeneration.append(chrom1)
-        # newGeneration.append(chrom2)
-        son1 = chrom1
-        son2 = chrom2
+        crom_size = chrom1.getLarge()
+        newRoute1 = chrom1.getRoute()
+        newRoute2 = chrom2.getRoute()
+        son1 = Chromosome(crom_size, None, newRoute1)
+        son2 = Chromosome(crom_size, None, newRoute2)
+
         print()
-        print("Son 1 (Identical):", (chrom1.getRoute()))  # Only Print
-        print("Son 2 (Identical):", (chrom2.getRoute()))  # Only Print
+        print("New Sons without CrossOver (Indentical): ")
+        print(son1.getRoute())
+        print(son2.getRoute())
+
+        son1.setObjectivePunctuation()
+        son2.setObjectivePunctuation()
+
         return son1, son2
 
     def mutationPosibility(self):  # Mutation posibility evaluation
@@ -240,10 +271,10 @@ class Population(object):
             return False
 
     def mutation(self, chrom):  # Swap Mutation
-        swapPos1 = random.randint(1, self.chromSize)
-        swapPos2 = random.randint(1, self.chromSize)
+        swapPos1 = random.randint(1, self.chromSize-1)
+        swapPos2 = random.randint(1, self.chromSize-1)
         while swapPos1 == swapPos2:
-            swapPos2 = random.randint(1, self.chromSize)
+            swapPos2 = random.randint(1, self.chromSize-1)
         newRoute = []
         for i in range(len(chrom.getRoute())):
             if i != swapPos1 & i != swapPos2:
@@ -253,7 +284,7 @@ class Population(object):
             else:
                 newRoute.append(chrom.getRoute()[swapPos1])
         son = Chromosome(self.chromSize, None, newRoute)
-        print("Mutated Chrom in positions:", swapPos1, " and ", swapPos2, ": ", self.chrom.getRoute())
+        print("Mutated Chrom in positions:", swapPos1, " and ", swapPos2, ": ", chrom.getRoute())
         return son
 
     def addChildren(self, son1, son2, newGeneration):
@@ -264,12 +295,6 @@ class Population(object):
         self.population = []
         for i in range(len(newGeneration)):
             self.population.append(newGeneration[i])
-
-    """
-    def listToInt(self, arr):
-        num = ''.join(str(i) for i in arr)
-        return int(num)
-    """
 
     # Class Getters and Setters
     @classmethod

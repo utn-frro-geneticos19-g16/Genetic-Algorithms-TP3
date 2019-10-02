@@ -12,8 +12,6 @@ class CitiesManager(object):
     def __init__(self):
         self.citiesRepo = NeighbourCitiesRepo()
 
-        print("Llego a constructor de cityManager")
-
         buenos_aires = City(name="Buenos Aires", cities_neig=self.citiesRepo.get_near_cities_dict("Buenos Aires")
                             , lat=-34.6131516, long=-58.3772316,)
 
@@ -113,8 +111,7 @@ class CitiesManager(object):
             "Ushuaia": ushuaia,
             "Viedma": viedma,
         }
-
-        print(self.cities)
+        print("Correct Initialization")
 
     # Best Track starting with a Selected One
     def get_best_track_from(self, root_city_name):
@@ -174,7 +171,7 @@ class CitiesManager(object):
     def get_track_with_ag(self):
         # ImportantValues
         iterationLimit = 4  # 200  # Population Iterations
-        initPopulationNum = 4  # Initial Population Size
+        initPopulationNum = 10  # 50  # Initial Population Size
         crossoverProb = 0.75  # Probability of CrossOver
         mutationProb = 0.05  # Probability of Mutation
 

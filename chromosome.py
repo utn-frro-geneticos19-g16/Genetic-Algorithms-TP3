@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import random
 
 
@@ -54,7 +55,8 @@ class Chromosome(object):
         return accumulated_distance
 
     def calcFitness(self, totalObj):  # Reverse Score (Little Distances gets better Fitness)
-        self.fitness = ((totalObj - self.getObjectivePunctuation()) / totalObj)  # Update Fitness
+        # self.fitness = 1000 / self.getObjectivePunctuation()
+        self.fitness = totalObj / (totalObj - self.getObjectivePunctuation()) - 1  # Update Fitness
         return self.fitness
 
     # Getters and Setters
