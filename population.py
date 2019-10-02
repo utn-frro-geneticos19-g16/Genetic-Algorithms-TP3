@@ -25,8 +25,8 @@ class Population(object):
         print("Start Algorithm")
         for i in range(numChroms):
             print("Chrom ", i, end=": ")
-            oneChrom = Chromosome(self.chromSize, cities, None)  # Initialization of Chromosomes
-            self.addChrom(oneChrom)  # Add to Population
+            # Initialization of Chromosomes
+            self.population.append(Chromosome(self.chromSize, cities, None))  # Add to Population
 
         print("INITIAL POPULATION TEST")
         for i in range(len(self.population)):
@@ -61,8 +61,6 @@ class Population(object):
             # for j in range(large):
                 # print(self.population[i].getRoute()[j], end=', ')
             print(self.population[i].getRoute())
-            print()
-            print()
         fitness = self.getTotalFitnessAverage()
         print()
         print("Chromosome --- Value --- Objective Punctuation --- Fitness")
@@ -115,8 +113,6 @@ class Population(object):
 
     # Reproduction
     def reproduce(self):
-        pass
-        """
         parents = []  # List of Potential Parents
         newGeneration = []  # List of Children
         print("Roulette Results: ", end='')
@@ -144,12 +140,9 @@ class Population(object):
             self.addChildren(son1, son2, newGeneration)
         self.replacePopulation(newGeneration)
         self.setTotalFitness(0)
-        """
 
     # Genetic Operator (Roulette Method)
     def roulette(self, lastParent):
-        pass
-        """
         # Generator of a Bidimensional List (Fitness Range of Chromosomes)
         newRoulette = [[0] * 2 for _ in range(len(self.population))]
         acum = 0  # Acumulator of Relative Fitness from 0 to 1 (Fills Roulette)
@@ -181,7 +174,6 @@ class Population(object):
                     return lastParent-1
         print("Error")
         return "Error"  # Error Exit
-        """
 
     def crossPosibility(self):  # CrossOver posibility evaluation
         if self.getCrossProb()*100 >= random.randint(1, 100):
@@ -191,41 +183,55 @@ class Population(object):
 
     # Ciclic Crossover
     def cross(self, parent1, parent2):
-        pass
-        """
         crom_size = parent1.getLarge()
-        son1 = Chromosome(crom_size, None)
-        son2 = Chromosome(crom_size, None)
-        cut = random.randint(1, crom_size - 2)  # Random Cut Point (Except by zero or all genes)
+        son1 = Chromosome(crom_size, None, ['']*crom_size)
+        son2 = Chromosome(crom_size, None, ['']*crom_size)
+        # cut = random.randint(1, crom_size - 2)  # Random Cut Point (Except by zero or all genes)
 
-        son1.copy(parent1, 0, cut)
-        son1.copy(parent2, cut, crom_size)
+        son1.route[0] = parent1.route[0]
+        for i in range(1, crom_size):
+            pos = 0
+            key = parent2.route[i]
+            if key == parent1.route[0]:
+                break
+            for j in range(1, crom_size):
+                if parent1.route[j] == key:
+                    pos = j
+            son1.route[pos] = key
 
-        son2.copy(parent2, 0, cut)
-        son2.copy(parent1, cut, crom_size)
+        for i in range(1, crom_size):
+            if son1.route[i] == '':
+                son1.route[i] = parent2.route[i]
 
-        son1.setObjectivePunctuation()
-        son2.setObjectivePunctuation()
+        son2.route[0] = parent2.route[0]
+        for i in range(1, crom_size):
+            pos = 0
+            key = parent1.route[i]
+            if key == parent2.route[0]:
+                break
+            for j in range(1, crom_size):
+                if parent2.route[j] == key:
+                    pos = j
+            son2.route[pos] = key
 
-        print()
-        print("Son 1:", son1.toBinInteger())  # Only Print
-        print("Son 2:", son2.toBinInteger())  # Only Print
-        print("Cut Point on:", cut)  # Only Print
+        for i in range(1, crom_size):
+            if son2.route[i] == '':
+                son2.route[i] = parent1.route[i]
+
+        print("sons: ")
+        print(son1.getRoute())
+        print(son2.getRoute())
         return son1, son2
-    """
 
     def copy(self, chrom1, chrom2):
-        pass
-        """
         # newGeneration.append(chrom1)
         # newGeneration.append(chrom2)
         son1 = chrom1
         son2 = chrom2
         print()
-        print("Son 1 (Identical):", self.listToInt(chrom1.getBody()))  # Only Print
-        print("Son 2 (Identical):", self.listToInt(chrom2.getBody()))  # Only Print
+        print("Son 1 (Identical):", (chrom1.getRoute()))  # Only Print
+        print("Son 2 (Identical):", (chrom2.getRoute()))  # Only Print
         return son1, son2
-        """
 
     def mutationPosibility(self):  # Mutation posibility evaluation
         if self.getMutProb() * 100 >= random.randint(1, 100):

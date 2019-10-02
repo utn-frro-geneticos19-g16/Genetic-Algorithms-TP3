@@ -6,14 +6,16 @@ import random
 class Chromosome(object):
 
     # Class Attribute
-    CitiesDict = []
+    CitiesDict = {}
 
     # Constructor / Instance Attributes
     def __init__(self, large, cities, newRoute):
         # Chromosome's Genes
         if newRoute is None:
             random.shuffle(cities)
-            self.route = cities  # Shuffle and then Assignation
+            self.route = []
+            for i in range(len(cities)):
+                self.route.append(cities[i])  # Shuffle and then Assignation
             print(self.route)
         else:
             self.route = newRoute
@@ -21,8 +23,9 @@ class Chromosome(object):
         self.objectivePunctuation = 0
         self.fitness = 0
 
-        # Initialize Objective Function Punctuation
-        self.setObjectivePunctuation()
+        if newRoute is None:
+            # Initialize Objective Function Punctuation
+            self.setObjectivePunctuation()
 
 
     @classmethod
@@ -72,3 +75,9 @@ class Chromosome(object):
 
     def setFintess(self, fitness):
         self.fitness = fitness
+
+    """
+    def copy(self, another_crom, start, end):
+        for i in range(start, end):
+            self.route[i] = (another_crom.route[i])
+    """
