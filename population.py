@@ -62,11 +62,11 @@ class Population(object):
         self.setBestTrackDistance(self.population[bestRoutePos].getObjectivePunctuation())
 
         print()
-        print("Chromosome --- Value --- Objective Punctuation -updateTotalFitness-- Fitness")
-        print("Best Values: Route Nº", bestRoutePos, "with:",
-              self.population[bestRoutePos].getObjectivePunctuation(), "OP,", round(maxVal, 4), "Fit")
-        print("Worst Values: Route Nº", worstRoutePos, "with:",
-              self.population[worstRoutePos].getObjectivePunctuation(), "OP,", round(minVal, 4), "Fit")
+        print("Chromosome --- Value --- Objective Punctuation --- Fitness")
+        print("Best Values: Route Nº", bestRoutePos, "with OP:",
+              self.population[bestRoutePos].getObjectivePunctuation(), "km,", round(maxVal, 4), "Fit")
+        print("Worst Values: Route Nº", worstRoutePos, "with OP:",
+              self.population[worstRoutePos].getObjectivePunctuation(), "km,", round(minVal, 4), "Fit")
         print("Average OP:", averageObjPunc, "--- Average Fitness:", round(self.getTotalFitnessAverage(), 6),
               "with:", self.getBestTrackDistance(), "km")
         print()

@@ -55,7 +55,7 @@ class Chromosome(object):
 
     def calcFitness(self, totalObj):  # Reverse Score (Little Distances gets better Fitness)
         # self.fitness = 1000 / self.getObjectivePunctuation()
-        self.fitness = 1 - (1 - (totalObj - self.getObjectivePunctuation()) / totalObj)  # Update Fitness
+        self.fitness = (1 - (totalObj - self.getObjectivePunctuation()) / totalObj)  # Update Fitness
         return self.fitness
 
     # Getters and Setters

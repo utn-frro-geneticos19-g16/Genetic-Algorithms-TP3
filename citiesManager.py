@@ -204,16 +204,19 @@ class CitiesManager(object):
 
         # Convert track_ag in a citiesToVisit List
         track_ag_cities = []
-        for i in range(track_ag):
-            city_name = track_ag[i]
+        for city_name in track_ag.getRoute():
             track_ag_cities.append(CityToVisit(name=city_name, lat=self.cities[city_name].get_lat(),
                                                long=self.cities[city_name].get_lng()))
 
+        root_city = track_ag.getRoute()[0]
+        track_ag_cities.append(CityToVisit(name=root_city, lat=self.cities[root_city].get_lat(),
+                                           long=self.cities[root_city].get_lng()))
+
         print("track")
-        print(track_ag)
+        print(track_ag_cities)
         print("total: ", km_ag)
 
         return {
-            "cities_to_visit": track_ag,
+            "cities_to_visit": [c.serialize() for c in track_ag_cities],
             "accumulated_distance": km_ag
         }
