@@ -11,15 +11,14 @@ class Population(object):
     totalObjPunc = 0  # The Sum of All Objective Functions Punctuation
     totalFitness = 0  # The Sum of All Objective Values
 
-    bestTrack = None
-    bestTrackDistance = 1000000
-
     # Constructor / Instance Attributes
     def __init__(self, numChroms, cities, crossProb, mutProb):
         self.numChroms = numChroms
         self.chromSize = len(cities)
         self.crossProb = crossProb
         self.mutProb = mutProb
+        self.bestTrack = None
+        self.bestTrackDistance = 1000000
 
         print("Start Algorithm")
         for i in range(numChroms):
@@ -57,18 +56,20 @@ class Population(object):
                 # print(self.population[i].getRoute()[j], end=', ')
             print(self.population[i].getRoute())
         fitness = self.getTotalFitnessAverage()
-        print()
-        print("Chromosome --- Value --- Objective Punctuation --- Fitness")
-        print("Max Values: Route Nº", bestRoutePos, "with:", self.population[bestRoutePos].getObjectivePunctuation(),
-              "OP,", round(maxVal, 4), "Fit")
-        print("Min Values: Route Nº", worstRoutePos, "with:", self.population[worstRoutePos].getObjectivePunctuation(),
-              "OP,", round(minVal, 4), "Fit")
-        print("Average OP:", averageObjPunc, "--- Average Fitness:", fitness)  # round(fitness,6)
-        print()
 
         # Setting best values of the generation (Class Attributes)
         self.setBestTrack(self.population[bestRoutePos])
         self.setBestTrackDistance(self.population[bestRoutePos].getObjectivePunctuation())
+
+        print()
+        print("Chromosome --- Value --- Objective Punctuation -updateTotalFitness-- Fitness")
+        print("Best Values: Route Nº", bestRoutePos, "with:",
+              self.population[bestRoutePos].getObjectivePunctuation(), "OP,", round(maxVal, 4), "Fit")
+        print("Worst Values: Route Nº", worstRoutePos, "with:",
+              self.population[worstRoutePos].getObjectivePunctuation(), "OP,", round(minVal, 4), "Fit")
+        print("Average OP:", averageObjPunc, "--- Average Fitness:", round(self.getTotalFitnessAverage(), 6),
+              "with:", self.getBestTrackDistance(), "km")
+        print()
 
     # Get the Best Values
     def getBestTrackAg(self):
@@ -86,21 +87,17 @@ class Population(object):
     def updateTotalFitness(cls, fitness):
         cls.totalFitness += fitness
 
-    @classmethod
-    def getBestTrack(cls):
-        return cls.bestTrack
+    def getBestTrack(self):
+        return self.bestTrack
 
-    @classmethod
-    def setBestTrack(cls, track):
-        cls.bestTrack = track
+    def setBestTrack(self, track):
+        self.bestTrack = track
 
-    @classmethod
-    def getBestTrackDistance(cls):
-        return cls.bestTrackDistance
+    def getBestTrackDistance(self):
+        return self.bestTrackDistance
 
-    @classmethod
-    def setBestTrackDistance(cls, trackDistance):
-        cls.bestTrackDistance = trackDistance
+    def setBestTrackDistance(self, trackDistance):
+        self.bestTrackDistance = trackDistance
 
     # Add to Population
     def addChrom(self, Chrom):
@@ -129,9 +126,9 @@ class Population(object):
                 print("CrossOver didn't happen in reproduction:", (i + 2) / 2)  # Only Print
             # Individual Mutation Probability Evaluation
             if self.mutationPosibility():
-                son1 = self.mutation(son1)
+                son1.mutate()
             if self.mutationPosibility():
-                son2 = self.mutation(son2)
+                son2.mutate()
             self.addChildren(son1, son2, newGeneration)
         self.replacePopulation(newGeneration)
         self.setTotalFitness(0)
@@ -185,6 +182,7 @@ class Population(object):
 
         newRoute1[0] = parent1.route[0]
         aux = parent2.route[0]
+        pos = None
         while aux != parent1.route[0]:
             for i in range(crom_size):
                 if parent1.route[i] == aux:
@@ -199,6 +197,7 @@ class Population(object):
 
         newRoute2[0] = parent2.route[0]
         aux = parent1.route[0]
+        pos = None
         while aux != parent2.route[0]:
             for i in range(crom_size):
                 if parent2.route[i] == aux:
@@ -301,23 +300,6 @@ class Population(object):
             return True
         else:
             return False
-
-    def mutation(self, chrom):  # Swap Mutation
-        swapPos1 = random.randint(1, self.chromSize-1)
-        swapPos2 = random.randint(1, self.chromSize-1)
-        while swapPos1 == swapPos2:
-            swapPos2 = random.randint(1, self.chromSize-1)
-        newRoute = []
-        for i in range(len(chrom.getRoute())):
-            if i != swapPos1 & i != swapPos2:
-                newRoute.append(chrom.getRoute()[i])
-            elif i == swapPos1:
-                newRoute.append(chrom.getRoute()[swapPos2])
-            else:
-                newRoute.append(chrom.getRoute()[swapPos1])
-        son = Chromosome(self.chromSize, None, newRoute)
-        print("Mutated Chrom in positions:", swapPos1, " and ", swapPos2, ": ", chrom.getRoute())
-        return son
 
     def addChildren(self, son1, son2, newGeneration):
         newGeneration.append(son1)

@@ -55,7 +55,7 @@ class Chromosome(object):
 
     def calcFitness(self, totalObj):  # Reverse Score (Little Distances gets better Fitness)
         # self.fitness = 1000 / self.getObjectivePunctuation()
-        self.fitness = totalObj / (totalObj - self.getObjectivePunctuation()) - 1  # Update Fitness
+        self.fitness = 1 - (1 - (totalObj - self.getObjectivePunctuation()) / totalObj)  # Update Fitness
         return self.fitness
 
     # Getters and Setters
@@ -82,3 +82,19 @@ class Chromosome(object):
         for i in range(start, end):
             self.route[i] = (another_crom.route[i])
     """
+
+    def mutate(self):
+        swapPos1 = random.randint(1, self.getLarge() - 1)
+        swapPos2 = random.randint(1, self.getLarge() - 1)
+        while swapPos1 == swapPos2:
+            swapPos2 = random.randint(1, self.getLarge() -1)
+        newRoute = []
+        for i in range(self.getLarge()):
+            if i != swapPos1 and i != swapPos2:
+                newRoute.append(self.route[i])
+            elif i == swapPos1:
+                newRoute.append(self.route[swapPos2])
+            elif i == swapPos2:
+                newRoute.append(self.route[swapPos1])
+        print("Mutated Chrom in positions:", swapPos1, " and "
+              , swapPos2, ": ", self.route)
