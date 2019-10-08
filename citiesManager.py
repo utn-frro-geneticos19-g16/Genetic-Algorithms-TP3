@@ -189,19 +189,30 @@ class CitiesManager(object):
             pob.showPopulation(iterationCount)
 
             # In the last iteration, the chromosomes population mustn't reproduce
-            if iterationCount < iterationLimit - 1:
+            if iterationCount <= iterationLimit - 1:
                 pob.reproduce()  # Reproduction of Actual Generation
                 print("------------")
-            else:
-                # Last Reproduction Message
-                print("Last Generation Reached Correctly")
-                print("------------")
-                print()
-                print()
-                track_ag, km_ag = pob.getBestTrackAg()
-        
+
+        # Last Reproduction Message
+        print("Last Generation Reached Correctly")
+        print("------------")
+        print()
+        print()
+
+        # Get the Best Results after last generation
+        track_ag, km_ag = pob.getBestTrackAg()
+
         # Convert track_ag in a citiesToVisit List
-        
+        track_ag_cities = []
+        for i in range(track_ag):
+            city_name = track_ag[i]
+            track_ag_cities.append(CityToVisit(name=city_name, lat=self.cities[city_name].get_lat(),
+                                               long=self.cities[city_name].get_lng()))
+
+        print("track")
+        print(track_ag)
+        print("total: ", km_ag)
+
         return {
             "cities_to_visit": track_ag,
             "accumulated_distance": km_ag

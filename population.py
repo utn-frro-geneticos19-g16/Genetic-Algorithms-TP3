@@ -179,48 +179,80 @@ class Population(object):
     # Cyclic Crossover
     def cross(self, parent1, parent2):
         crom_size = parent1.getLarge()
-        son1 = Chromosome(crom_size, None, ['']*crom_size)
-        son2 = Chromosome(crom_size, None, ['']*crom_size)
 
-        son1.route[0] = parent1.route[0]
-        key = parent2.route[0]
-        i = 0
-        while key != parent1.route[0]:
-            if i == crom_size-1:
-                i = 0
-            pos = 0
-            if key == parent1.route[0]:
-                break
-            for j in range(crom_size):
-                if parent1.route[j] == key:
-                    pos = j
-            son1.route[pos] = key
-            i += 1
-            key = parent2.route[i]
+        newRoute1 = ['']*crom_size
+        newRoute2 = ['']*crom_size
+
+        newRoute1[0] = parent1.route[0]
+        aux = parent2.route[0]
+        while aux != parent1.route[0]:
+            for i in range(crom_size):
+                if parent1.route[i] == aux:
+                    pos = i
+                    break
+            newRoute1[pos] = aux
+            aux = parent2.route[pos]
 
         for i in range(crom_size):
-            if son1.route[i] == '':
-                son1.route[i] = parent2.route[i]
+            if newRoute1[i] == '':
+                newRoute1[i] = parent2.route[i]
 
-        son2.route[0] = parent2.route[0]
-        key = parent1.route[0]
-        i = 0
-        while key != parent2.route[0]:
-            if i == crom_size - 1:
-                i = 0
-            pos = 0
-            if key == parent2.route[0]:
-                break
-            for j in range(crom_size):
-                if parent2.route[j] == key:
-                    pos = j
-            son2.route[pos] = key
-            i += 1
-            key = parent1.route[i]
+        newRoute2[0] = parent2.route[0]
+        aux = parent1.route[0]
+        while aux != parent2.route[0]:
+            for i in range(crom_size):
+                if parent2.route[i] == aux:
+                    pos = i
+                    break
+            newRoute2[pos] = aux
+            aux = parent1.route[pos]
 
         for i in range(crom_size):
-            if son2.route[i] == '':
-                son2.route[i] = parent1.route[i]
+            if newRoute2[i] == '':
+                newRoute2[i] = parent1.route[i]
+
+        son1 = Chromosome(crom_size, None, newRoute1)
+        son2 = Chromosome(crom_size, None, newRoute2)
+
+        # son1.route[0] = parent1.route[0]
+        # key = parent2.route[0]
+        # i = 0
+        # while key != parent1.route[0]:
+        #     if i == crom_size-1:
+        #         i = 0
+        #     pos = 0
+        #     if key == parent1.route[0]:
+        #         break
+        #     for j in range(crom_size):
+        #         if parent1.route[j] == key:
+        #             pos = j
+        #     son1.route[pos] = key
+        #     i += 1
+        #     key = parent2.route[i]
+        #
+        # for i in range(crom_size):
+        #     if son1.route[i] == '':
+        #         son1.route[i] = parent2.route[i]
+        #
+        # son2.route[0] = parent2.route[0]
+        # key = parent1.route[0]
+        # i = 0
+        # while key != parent2.route[0]:
+        #     if i == crom_size - 1:
+        #         i = 0
+        #     pos = 0
+        #     if key == parent2.route[0]:
+        #         break
+        #     for j in range(crom_size):
+        #         if parent2.route[j] == key:
+        #             pos = j
+        #     son2.route[pos] = key
+        #     i += 1
+        #     key = parent1.route[i]
+        #
+        # for i in range(crom_size):
+        #     if son2.route[i] == '':
+        #         son2.route[i] = parent1.route[i]
 
         # son2.route[0] = parent2.route[0]
         # for i in range(crom_size):
@@ -242,8 +274,8 @@ class Population(object):
         print(son1.getRoute())
         print(son2.getRoute())
 
-        son1.setObjectivePunctuation()
-        son2.setObjectivePunctuation()
+        # son1.setObjectivePunctuation()
+        # son2.setObjectivePunctuation()
 
         return son1, son2
 
@@ -259,8 +291,8 @@ class Population(object):
         print(son1.getRoute())
         print(son2.getRoute())
 
-        son1.setObjectivePunctuation()
-        son2.setObjectivePunctuation()
+        # son1.setObjectivePunctuation()
+        # son2.setObjectivePunctuation()
 
         return son1, son2
 

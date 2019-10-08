@@ -24,9 +24,8 @@ class Chromosome(object):
         self.objectivePunctuation = 0
         self.fitness = 0
 
-        if newRoute is None:
-            # Initialize Objective Function Punctuation
-            self.setObjectivePunctuation()
+        # Initialize Objective Function Punctuation
+        self.setObjectivePunctuation()
 
 
     @classmethod
