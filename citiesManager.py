@@ -170,8 +170,8 @@ class CitiesManager(object):
     # Best Track Using Genetic Algorithm
     def get_track_with_ag(self):
         # ImportantValues
-        iterationLimit = 4  # 200  # Population Iterations
-        initPopulationNum = 10  # 50  # Initial Population Size
+        iterationLimit = 20  # 200  # Population Iterations
+        initPopulationNum = 20  # 50  # Initial Population Size
         crossoverProb = 0.75  # Probability of CrossOver
         mutationProb = 0.05  # Probability of Mutation
 

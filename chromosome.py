@@ -40,22 +40,25 @@ class Chromosome(object):
     def getRoute(self):
         return self.route
 
-    def calcObjPunc(self):
+    def getAccumulatedDistance(self):
         accumulated_distance = 0
         cd = self.getCitiesDict()
         city_last = self.route[0]
         # Calculate Distance Step by Step comparing the Chromosome's Route with Neighbours on Cities Dictionary
-        for i in range(1, len(self.route)-2):
+        for i in range(1, len(self.route) - 2):
             city_step = self.route[i]
             accumulated_distance += cd[city_last].get_distance_to(cd[city_step])
             city_last = city_step
         # At the End, go back to the First City
-        accumulated_distance += cd[self.route[len(self.route)-1]].get_distance_to(cd[self.route[0]])
+        accumulated_distance += cd[self.route[len(self.route) - 1]].get_distance_to(cd[self.route[0]])
         return accumulated_distance
+
+    def calcObjPunc(self):
+        return 1 / self.getAccumulatedDistance()
 
     def calcFitness(self, totalObj):  # Reverse Score (Little Distances gets better Fitness)
         # self.fitness = 1000 / self.getObjectivePunctuation()
-        self.fitness = (1 - (totalObj - self.getObjectivePunctuation()) / totalObj)  # Update Fitness
+        self.fitness = (self.getObjectivePunctuation() / totalObj)  # Update Fitness
         return self.fitness
 
     # Getters and Setters

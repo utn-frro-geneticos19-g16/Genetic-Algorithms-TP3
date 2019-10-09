@@ -42,14 +42,12 @@ cities = CitiesManager()
 # Index
 @app.route('/')
 def hello_world():
-    print("llego a menu inicio")
     return render_template("index.html")
 
 
 # Best Track starting from a Selected City
 @app.route('/Map/<root_city_name>')
 def show_track_from(root_city_name):
-    print("Llego a show_track_from, ciudad_origen: " + root_city_name)
     track = cities.get_best_track_from(root_city_name)
 
     print(track)

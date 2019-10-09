@@ -59,14 +59,14 @@ class Population(object):
 
         # Setting best values of the generation (Class Attributes)
         self.setBestTrack(self.population[bestRoutePos])
-        self.setBestTrackDistance(self.population[bestRoutePos].getObjectivePunctuation())
+        self.setBestTrackDistance(self.population[bestRoutePos].getAccumulatedDistance())
 
         print()
         print("Chromosome --- Value --- Objective Punctuation --- Fitness")
-        print("Best Values: Route Nº", bestRoutePos, "with OP:",
-              self.population[bestRoutePos].getObjectivePunctuation(), "km,", round(maxVal, 4), "Fit")
-        print("Worst Values: Route Nº", worstRoutePos, "with OP:",
-              self.population[worstRoutePos].getObjectivePunctuation(), "km,", round(minVal, 4), "Fit")
+        print("Best Value: Route Nº", bestRoutePos, "with:",
+              self.population[bestRoutePos].getObjectivePunctuation(), "OP,", round(maxVal, 4), "Fit")
+        print("Worst Value: Route Nº", worstRoutePos, "with:",
+              self.population[worstRoutePos].getObjectivePunctuation(), "OP,", round(minVal, 4), "Fit")
         print("Average OP:", averageObjPunc, "--- Average Fitness:", round(self.getTotalFitnessAverage(), 6),
               "with:", self.getBestTrackDistance(), "km")
         print()
@@ -129,6 +129,10 @@ class Population(object):
                 son1.mutate()
             if self.mutationPosibility():
                 son2.mutate()
+
+            son1.setObjectivePunctuation()
+            son2.setObjectivePunctuation()
+
             self.addChildren(son1, son2, newGeneration)
         self.replacePopulation(newGeneration)
         self.setTotalFitness(0)
@@ -213,68 +217,10 @@ class Population(object):
         son1 = Chromosome(crom_size, None, newRoute1)
         son2 = Chromosome(crom_size, None, newRoute2)
 
-        # son1.route[0] = parent1.route[0]
-        # key = parent2.route[0]
-        # i = 0
-        # while key != parent1.route[0]:
-        #     if i == crom_size-1:
-        #         i = 0
-        #     pos = 0
-        #     if key == parent1.route[0]:
-        #         break
-        #     for j in range(crom_size):
-        #         if parent1.route[j] == key:
-        #             pos = j
-        #     son1.route[pos] = key
-        #     i += 1
-        #     key = parent2.route[i]
-        #
-        # for i in range(crom_size):
-        #     if son1.route[i] == '':
-        #         son1.route[i] = parent2.route[i]
-        #
-        # son2.route[0] = parent2.route[0]
-        # key = parent1.route[0]
-        # i = 0
-        # while key != parent2.route[0]:
-        #     if i == crom_size - 1:
-        #         i = 0
-        #     pos = 0
-        #     if key == parent2.route[0]:
-        #         break
-        #     for j in range(crom_size):
-        #         if parent2.route[j] == key:
-        #             pos = j
-        #     son2.route[pos] = key
-        #     i += 1
-        #     key = parent1.route[i]
-        #
-        # for i in range(crom_size):
-        #     if son2.route[i] == '':
-        #         son2.route[i] = parent1.route[i]
-
-        # son2.route[0] = parent2.route[0]
-        # for i in range(crom_size):
-        #     pos = 0
-        #     key = parent1.route[i]
-        #     if key == parent2.route[0]:
-        #         break
-        #     for j in range(crom_size):
-        #         if parent2.route[j] == key:
-        #             pos = j
-        #     son2.route[pos] = key
-        #
-        # for i in range(crom_size):
-        #     if son2.route[i] == '':
-        #         son2.route[i] = parent1.route[i]
-
         print()
         print("New Sons after CrossOver: ")
         print(son1.getRoute())
         print(son2.getRoute())
-
-        # son1.setObjectivePunctuation()
-        # son2.setObjectivePunctuation()
 
         return son1, son2
 
