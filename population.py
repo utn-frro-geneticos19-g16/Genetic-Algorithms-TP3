@@ -149,28 +149,11 @@ class Population(object):
             newRoulette[i][1] = acum  # Range Max: New Acum Value
         ranNum = round(random.uniform(0, 1), 6)  # Random Number from 0.000000 to 0.999999
         # print("Random: ", ranNum)  # Only Print
-        count = 0
-        while count <= 100:  # If the same parent is selected more than 100 times... select the next or last one
-            for i in range(len(newRoulette)):
-                if newRoulette[i][0] < ranNum < newRoulette[i][1]:
-                    # Return Selected Chromosome if the Random Number Exists in its Range
-                    if lastParent != i:
-                        print(i, end=', ')
-                        return i
-                    else:
-                        print("REP", end=', ')
-                        ranNum = round(random.uniform(0, 1), 6)
-                        break
-            count += 1
-            if count == 100:  # Reach Only if the same parent goes selected 100 times
-                if lastParent < len(newRoulette)-1:
-                    print(lastParent, end=', ')
-                    return lastParent+1
-                else:
-                    print(lastParent, end=', ')
-                    return lastParent-1
-        print("Error")
-        return "Error"  # Error Exit
+        for i in range(len(newRoulette)):
+            if newRoulette[i][0] < ranNum < newRoulette[i][1]:
+                # Return Selected Chromosome if the Random Number Exists in its Range
+                print(i, end=', ')
+                return i
 
     def crossPosibility(self):  # CrossOver posibility evaluation
         if self.getCrossProb()*100 >= random.randint(1, 100):
