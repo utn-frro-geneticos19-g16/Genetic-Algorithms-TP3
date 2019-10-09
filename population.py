@@ -34,8 +34,10 @@ class Population(object):
         averageObjPunc = self.getTotalObjPunc() / len(self.population)
         fitness = 0
         maxVal = 0
+        secondMaxVal = 0
         minVal = 0
         bestRoutePos = 0
+        secondBestRoutePos = 0
         worstRoutePos = 0
         print()
         print()
@@ -52,6 +54,9 @@ class Population(object):
             elif fitness < minVal:
                 minVal = fitness
                 worstRoutePos = i
+            elif (fitness > secondMaxVal) and (fitness < maxVal):
+                secondMaxVal = fitness
+                secondBestRoutePos = i
             # for j in range(large):
                 # print(self.population[i].getRoute()[j], end=', ')
             print(self.population[i].getRoute())
@@ -62,7 +67,7 @@ class Population(object):
         self.setBestTrackDistance(self.population[bestRoutePos].getAccumulatedDistance())
 
         print()
-        print("Generation Final Status:")
+        print("Generation", numIter+1, "Final Status:")
         print("Worst Value: Route Nº", worstRoutePos, "with:",
               self.population[worstRoutePos].getObjectivePunctuation(), "OP,", round(minVal, 4), "Fit")
         print("Best Value: Route Nº", bestRoutePos, "with:",
@@ -71,6 +76,17 @@ class Population(object):
         print("Average OP:", averageObjPunc, "--- Average Fitness:", round(self.getTotalFitnessAverage(), 6))
         print("---")
         print()
+
+        elitChrom = self.population[bestRoutePos]
+        secondElitChrom = self.population[secondBestRoutePos]
+
+        return {
+            "AverageOP": averageObjPunc,
+            "MinOP": self.population[worstRoutePos].getObjectivePunctuation(),
+            "MaxOP": self.population[bestRoutePos].getObjectivePunctuation(),
+            "ElitChrom": elitChrom,
+            "SecondElitChrom": secondElitChrom
+        }
 
     # Get the Best Values
     def getBestTrackAg(self):
@@ -105,18 +121,21 @@ class Population(object):
         self.population.append(Chrom)
 
     # Reproduction
-    def reproduce(self):
+    def reproduce(self, elitChrom, secondElitChrom):
         parents = []  # List of Potential Parents
         newGeneration = []  # List of Children
+
+        # Elitism
+        parents.append(elitChrom)
+        parents.append(secondElitChrom)
+
         print("Roulette Results: ", end='')
-        #  lastParent = None  # Check if a Chromosome tries to reproduce with himself
         for _ in range(0, len(self.population), 2):
-            lastParent = None
             for i in range(2):
-                lastParent = self.roulette(lastParent)  # Parents Selected by Roulette
-                parents.append(self.population[lastParent])
+                indexSelectedParent = self.roulette()  # Parents Selected by Roulette
+                parents.append(self.population[indexSelectedParent])
         print()
-        for i in range(0, len(parents), 2):
+        for i in range(2, len(parents), 2):
             father1 = parents[i]
             father2 = parents[i + 1]
             if self.crossPosibility():  # CrossOver Probability Evaluation
@@ -139,7 +158,7 @@ class Population(object):
         self.setTotalFitness(0)
 
     # Genetic Operator (Roulette Method)
-    def roulette(self, lastParent):
+    def roulette(self):
         # Generator of a Bidimensional List (Fitness Range of Chromosomes)
         newRoulette = [[0] * 2 for _ in range(len(self.population))]
         acum = 0  # Acumulator of Relative Fitness from 0 to 1 (Fills Roulette)
@@ -147,13 +166,14 @@ class Population(object):
             newRoulette[i][0] = acum  # Range Min: Last Acum Value
             acum += round(self.population[i].getFitness(), 6)  # Acum's Value From Zero
             newRoulette[i][1] = acum  # Range Max: New Acum Value
-        ranNum = round(random.uniform(0, 1), 6)  # Random Number from 0.000000 to 0.999999
+        ranNum = random.uniform(0, 1)  # Random Number from 0.000000 to 0.999999
         # print("Random: ", ranNum)  # Only Print
         for i in range(len(newRoulette)):
-            if newRoulette[i][0] < ranNum < newRoulette[i][1]:
+            if newRoulette[i][0] <= ranNum <= newRoulette[i][1]:
                 # Return Selected Chromosome if the Random Number Exists in its Range
                 print(i, end=', ')
                 return i
+        return "Error"
 
     def crossPosibility(self):  # CrossOver posibility evaluation
         if self.getCrossProb()*100 >= random.randint(1, 100):
@@ -219,9 +239,6 @@ class Population(object):
         print("New Sons without CrossOver (Indentical): ")
         print(son1.getRoute())
         print(son2.getRoute())
-
-        # son1.setObjectivePunctuation()
-        # son2.setObjectivePunctuation()
 
         return son1, son2
 

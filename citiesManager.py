@@ -170,10 +170,10 @@ class CitiesManager(object):
     # Best Track Using Genetic Algorithm
     def get_track_with_ag(self):
         # ImportantValues
-        iterationLimit = 20  # 200  # Population Iterations
-        populationSize = 20  # 50  # Initial Population Size
+        iterationLimit = 1000  # 200  # Population Iterations
+        populationSize = 200  # 50  # Initial Population Size
         crossoverProb = 0.75  # Probability of CrossOver
-        mutationProb = 0.05  # Probability of Mutation
+        mutationProb = 0.3  # Probability of Mutation
 
         track_ag = None  # Initialization of Best Track
         km_ag = 0  # Initialization of Total Distance
@@ -186,11 +186,11 @@ class CitiesManager(object):
 
         # Iterations
         for iterationCount in range(iterationLimit):
-            pob.showPopulation(iterationCount)
+            values = pob.showPopulation(iterationCount)
 
             # In the last iteration, the chromosomes population mustn't reproduce
             if iterationCount < iterationLimit - 1:
-                pob.reproduce()  # Reproduction of Actual Generation
+                pob.reproduce(values["ElitChrom"], values["SecondElitChrom"])  # Reproduction of Actual Generation
                 print("------------")
 
         # Last Reproduction Message
