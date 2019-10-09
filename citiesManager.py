@@ -171,7 +171,7 @@ class CitiesManager(object):
     def get_track_with_ag(self):
         # ImportantValues
         iterationLimit = 20  # 200  # Population Iterations
-        initPopulationNum = 20  # 50  # Initial Population Size
+        populationSize = 20  # 50  # Initial Population Size
         crossoverProb = 0.75  # Probability of CrossOver
         mutationProb = 0.05  # Probability of Mutation
 
@@ -182,14 +182,14 @@ class CitiesManager(object):
         Chromosome.setCitiesDict(self.cities)
 
         # First Population
-        pob = Population(initPopulationNum, list(self.cities.keys()), crossoverProb, mutationProb)
+        pob = Population(populationSize, list(self.cities.keys()), crossoverProb, mutationProb)
 
         # Iterations
         for iterationCount in range(iterationLimit):
             pob.showPopulation(iterationCount)
 
             # In the last iteration, the chromosomes population mustn't reproduce
-            if iterationCount <= iterationLimit - 1:
+            if iterationCount < iterationLimit - 1:
                 pob.reproduce()  # Reproduction of Actual Generation
                 print("------------")
 
@@ -212,9 +212,14 @@ class CitiesManager(object):
         track_ag_cities.append(CityToVisit(name=root_city, lat=self.cities[root_city].get_lat(),
                                            long=self.cities[root_city].get_lng()))
 
-        print("track")
-        print(track_ag_cities)
-        print("total: ", km_ag)
+        # Show Final Results
+        print("Best Track:", end=" ")
+        for i in range(len(track_ag_cities)):
+            if i < len(track_ag_cities) - 1:
+                print(track_ag_cities[i].get_name(), end=", ")
+            else:
+                print(track_ag_cities[len(track_ag_cities)-1].get_name(), "(Vuelta al Inicio)")
+        print("Total Distance:", km_ag, "km, after", iterationLimit, "generations with", populationSize, "Chromosomes")
 
         return {
             "cities_to_visit": [c.serialize() for c in track_ag_cities],

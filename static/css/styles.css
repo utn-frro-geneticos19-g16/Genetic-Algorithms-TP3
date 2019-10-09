@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+/*
+<input type='button' id='btn-log-track' onclick='logTrack({{ track|tojson }})' value='Log Track'>
+*/
+
 body {
     background-color: darkred;
     /* background-image: url("route/img"); */
@@ -11,7 +15,7 @@ body {
 }
 
 body, html{
-    height: 100%;
+    height: 100vh;
 }
 
 .title {
@@ -63,13 +67,26 @@ a:hover { color: cornflowerblue; }
 /* Selected Links */
 a:active { color: cornflowerblue; }
 
-#map-container{
-    width: 100%;
-    height: 100%;
+#map-container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
 }
 
 #map {
-    width: 100%;
-    height: 95%;
-    margin-bottom: 10px;
+    /* flex: 1 1 auto; */
+    width: 70vw;
+    padding-bottom: 10px;
+}
+
+#sideStats {
+    /* flex: 1 1 auto; */
+    color: white;
+    background-color: black;
+    width: 30vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    overflow: scroll;
 }
