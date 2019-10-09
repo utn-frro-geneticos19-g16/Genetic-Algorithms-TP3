@@ -164,7 +164,7 @@ class Population(object):
         acum = 0  # Acumulator of Relative Fitness from 0 to 1 (Fills Roulette)
         for i in range(len(self.population)):
             newRoulette[i][0] = acum  # Range Min: Last Acum Value
-            acum += round(self.population[i].getFitness(), 6)  # Acum's Value From Zero
+            acum += self.population[i].getFitness()  # Acum's Value From Zero
             newRoulette[i][1] = acum  # Range Max: New Acum Value
         ranNum = random.uniform(0, 1)  # Random Number from 0.000000 to 0.999999
         # print("Random: ", ranNum)  # Only Print
