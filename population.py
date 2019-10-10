@@ -130,10 +130,13 @@ class Population(object):
         parents.append(secondElitChrom)
 
         print("Roulette Results: ", end='')
-        for _ in range(0, len(self.population), 2):
-            for i in range(2):
-                indexSelectedParent = self.roulette()  # Parents Selected by Roulette
+        for _ in range(len(self.population)):
+            indexSelectedParent = self.roulette()  # Parents Selected by Roulette
+            if indexSelectedParent is not None:
                 parents.append(self.population[indexSelectedParent])
+            else:
+                parents.append(self.population[0])  # Elite Chromosome
+                print(0, end=', ')
         print()
         for i in range(2, len(parents), 2):
             father1 = parents[i]
@@ -167,13 +170,12 @@ class Population(object):
             acum += self.population[i].getFitness()  # Acum's Value From Zero
             newRoulette[i][1] = acum  # Range Max: New Acum Value
         ranNum = random.uniform(0, 1)  # Random Number from 0.000000 to 0.999999
-        # print("Random: ", ranNum)  # Only Print
         for i in range(len(newRoulette)):
             if newRoulette[i][0] <= ranNum <= newRoulette[i][1]:
                 # Return Selected Chromosome if the Random Number Exists in its Range
                 print(i, end=', ')
                 return i
-        return "Error"
+        return None  # Error Return
 
     def crossPosibility(self):  # CrossOver posibility evaluation
         if self.getCrossProb()*100 >= random.randint(1, 100):

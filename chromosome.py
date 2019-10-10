@@ -99,5 +99,4 @@ class Chromosome(object):
                 newRoute.append(self.route[swapPos2])
             elif i == swapPos2:
                 newRoute.append(self.route[swapPos1])
-        print("Mutated Chrom in positions:", swapPos1, " and "
-              , swapPos2, ": ", self.route)
+        print("Mutated Chrom in positions:", swapPos1, "and", swapPos2, ": ", self.route)

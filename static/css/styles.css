@@ -53,16 +53,20 @@ body, html{
 a { text-decoration: none; }
 
 /* Unvisited Links */
-a:link { color: black; }
+.menuLink:link { color: black; }
+.whiteLink:link { color: white; }
   
 /* Visited Links */
-a:visited { color: black; }
+.menuLink:visited { color: black; }
+.whiteLink:visited { color: white; }
   
 /* MouseOver Links */
-a:hover { color: cornflowerblue; }
-  
+.menuLink:hover { color: cornflowerblue; }
+.whiteLink:hover { color: cornflowerblue; }
+
 /* Selected Links */
-a:active { color: cornflowerblue; }
+.menuLink:active { color: cornflowerblue; }
+.whiteLink:active { color: cornflowerblue; }
 
 /* ############ SHOWMAP STYLES ############ */
 
@@ -75,7 +79,7 @@ a:active { color: cornflowerblue; }
 
 #map {
     /* flex: 1 1 auto; */
-    width: 70vw;
+    width: 65vw;
     padding-bottom: 10px;
 }
 
@@ -83,7 +87,7 @@ a:active { color: cornflowerblue; }
     /* flex: 1 1 auto; */
     color: white;
     background-color: black;
-    width: 30vw;
+    width: 35vw;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
