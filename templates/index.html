@@ -8,15 +8,36 @@
         <title>Traveling Salesman Problem</title>
     </head>
     <body style="background-image:url(../static/resources/artificial-intelligence.jpg)" onload='initialization()'>
-    <!-- <body style="background-image:url({{url_for('static', filename='artificial-intelligence.jpg')}})"> -->
-        <div class="title"><h1>Genetic Algorithms TP3: Traveling Salesman Problem</h1></div>
-        <ul id="options">
-            {#<li><a href="http://127.0.0.1:5000/Map/Cordoba" id="opt1">EJERCICIO 2-A</a></li>#}
-            <li><a href="#" id="opt1" class="menuLink">EJERCICIO 2-A</a></li>
-            {#onclick="openModal()" // Reload with JS! #}
-            <li><a href="http://127.0.0.1:5000/Map" id="opt2" class="menuLink">EJERCICIO 2-B</a></li>
-            <li><a href="http://127.0.0.1:5000/Map/Ag" id="opt3" class="menuLink">EJERCICIO 2-C</a></li>
-        </ul>
+        <header>
+        <!-- <body style="background-image:url({{url_for('static', filename='artificial-intelligence.jpg')}})"> -->
+            <div class="title"><h1>Genetic Algorithms TP3: Traveling Salesman Problem</h1></div>
+        </header>
+        <main>
+            <ul id="options">
+                {#<li><a href="http://127.0.0.1:5000/Map/Cordoba" id="opt1">EJERCICIO 2-A</a></li>#}
+                <li><a href="#" id="opt1" class="menuLink">
+                    EXERCISE 2-A
+                    <br/>
+                    Best Selected City's Route by Heuristic
+                </a></li>
+                {#onclick="openModal()" // Reload with JS! #}
+                <li><a href="http://127.0.0.1:5000/Map" id="opt2" class="menuLink">
+                    EXERCISE 2-B
+                    <br/>
+                    Best All Cities' Route by Heuristic
+                </a></li>
+                <li><a href="http://127.0.0.1:5000/Map/Ag" id="opt3" class="menuLink">
+                    EXERCISE 2-C
+                    <br/>
+                    Best All Cities' Route by Genetic Algorithm
+                </a></li>
+            </ul>
+        </main>
+        <footer>
+            <p>MADE BY: Antonelli, Recalde, Rohn</p>
+            <br/>
+            <p>Genetics Algorithms 2019 - UTN FRRo</p>
+        </footer>
         <div id="overlayModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">

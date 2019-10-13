@@ -62,9 +62,10 @@ class Population(object):
             print(self.population[i].getRoute())
         fitness = self.getTotalFitnessAverage()
 
-        # Setting best values of the generation (Class Attributes)
-        self.setBestTrack(self.population[bestRoutePos])
-        self.setBestTrackDistance(self.population[bestRoutePos].getAccumulatedDistance())
+        # Setting Current Generation's Best Values (If Improves Actual Best)
+        if self.population[bestRoutePos].getAccumulatedDistance() < self.getBestTrackDistance():
+            self.setBestTrack(self.population[bestRoutePos])
+            self.setBestTrackDistance(self.population[bestRoutePos].getAccumulatedDistance())
 
         print()
         print("Generation", numIter+1, "Final Status:")

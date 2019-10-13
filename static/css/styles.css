@@ -15,6 +15,18 @@ body, html{
     height: 100vh;
 }
 
+header { height: 15vh; }
+
+main { height: 75vh; }
+
+footer {
+    height: 10vh;
+    color: white;
+    background-color: black;
+    padding: 1rem;
+    text-align: center;
+}
+
 .title {
     margin: 2rem;
     display: flex;
@@ -35,12 +47,14 @@ body, html{
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: center;
+    align-items: center;
+    /* justify-content: center; */
 }
 
 #options>li {
-    margin: 3rem;
+    margin: 1rem;
     font-size: 150%;
+    display: flex;
 }
 
 #options>li>a {
