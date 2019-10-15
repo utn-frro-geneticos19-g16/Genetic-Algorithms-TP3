@@ -6,13 +6,11 @@ import random
 
 
 class Population(object):
-    # Class Attributes
-    population = []  # Initial Population (Array of Chromosomes)
-    totalObjPunc = 0  # The Sum of All Objective Functions Punctuation
-    totalFitness = 0  # The Sum of All Objective Values
-
     # Constructor / Instance Attributes
     def __init__(self, numChroms, cities, crossProb, mutProb):
+        self.population = []  # Initial Population (Array of Chromosomes)
+        self.totalObjPunc = 0  # The Sum of All Objective Functions Punctuation
+        self.totalFitness = 0  # The Sum of All Objective Values
         self.numChroms = numChroms
         self.chromSize = len(cities)
         self.crossProb = crossProb
@@ -101,9 +99,8 @@ class Population(object):
         return acumObjPunc
 
     # Update Total Fitness
-    @classmethod
-    def updateTotalFitness(cls, fitness):
-        cls.totalFitness += fitness
+    def updateTotalFitness(self, fitness):
+        self.totalFitness += fitness
 
     def getBestTrack(self):
         return self.bestTrack
@@ -260,28 +257,21 @@ class Population(object):
         for i in range(len(newGeneration)):
             self.population.append(newGeneration[i])
 
-    # Class Getters and Setters
-    @classmethod
-    def getTotalObjPunc(cls):
-        return cls.totalObjPunc
+    def getTotalObjPunc(self):
+        return self.totalObjPunc
 
-    @classmethod
-    def setTotalObjPunc(cls, total):
-        cls.totalObjPunc = total
+    def setTotalObjPunc(self, total):
+        self.totalObjPunc = total
 
-    @classmethod
-    def getTotalFitness(cls):
-        return cls.totalFitness
+    def getTotalFitness(self):
+        return self.totalFitness
 
-    @classmethod
-    def setTotalFitness(cls, total):
-        cls.totalFitness = total
+    def setTotalFitness(self, total):
+        self.totalFitness = total
 
-    @classmethod
-    def getTotalFitnessAverage(cls):
-        return cls.totalFitness / len(cls.population)
+    def getTotalFitnessAverage(self):
+        return self.totalFitness / len(self.population)
 
-    # Getters and Setters 
     def getNumChroms(self):
         return self.numChroms
 
