@@ -103,7 +103,7 @@ class NeighbourCitiesRepo(object):
                                      "La Plata": 1030, "La Rioja": 149, "Mendoza": 569, "Neuquen": 1182, "Parana": 622,
                                      "Posadas": 980, "Rawson": 1647, "Resistencia": 678, "Rio Gallegos": 2587,
                                      "S.M. de Tucuman": 189, "S.S. de Jujuy": 477, "Salta": 410, "San Juan": 430,
-                                     "San Luis": 540, "Santa Fe": 689, "Santa Rosa": 1088, "Sgo. del Estero": 141,
+                                     "San Luis": 540, "Santa Fe": 689, "Santa Rosa": 1088, "Sgo. del Estero": 166,
                                      "Ushuaia": 3116, "Viedma": 1562},
 
             "S.M. de Tucuman": {"Buenos Aires": 1080, "Cordoba": 517, "Corrientes": 633, "Formosa": 703,
