@@ -170,10 +170,10 @@ class CitiesManager(object):
     # Best Track Using Genetic Algorithm
     def get_track_with_ag(self):
         # ImportantValues
-        iterationLimit = 1500  # Population Iterations
-        populationSize = 200  # Initial Population Size
-        crossoverProb = 0.75  # Probability of CrossOver
-        mutationProb = 0.4  # Probability of Mutation
+        iterationLimit = 150  # Population Iterations
+        populationSize = 800  # Initial Population Size
+        crossoverProb = 0.9  # Probability of CrossOver
+        mutationProb = 0.7  # Probability of Mutation
 
         track_ag = None  # Initialization of Best Track
         km_ag = 0  # Initialization of Total Distance
@@ -196,7 +196,6 @@ class CitiesManager(object):
         # Last Reproduction Message
         print("Last Generation Reached Correctly")
         print("------------")
-        print()
         print()
 
         # Get the Best Results after last generation
